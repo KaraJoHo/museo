@@ -68,4 +68,28 @@ RSpec.describe Curator do
 
     end
   end
+
+  describe '#find_artist_by_id' do
+    it 'finds the artist by their id' do
+      curator = Curator.new
+      artist_1 = Artist.new({
+                              id: "1",
+                              name: "Henri Cartier-Bresson",
+                              born: "1908",
+                              died: "2004",
+                              country: "France"
+                            })
+      artist_2 = Artist.new({
+                              id: "2",
+                              name: "Ansel Adams",
+                              born: "1902",
+                              died: "1984",
+                              country: "United States"
+                            })
+      curator.add_artist(artist_1)
+      curator.add_artist(artist_2)
+
+      expect(curator.find_artist_by_id("1")).to eq(artist_1)
+    end
+  end
 end
